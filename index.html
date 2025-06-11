@@ -1,27 +1,58 @@
 <!DOCTYPE html>
 <html lang="he">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>האתר שלי</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #f0f0f0;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-            font-size: 18px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Joining request</title>
+  <style>
+    body {
+      direction: rtl;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 40px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    input, textarea, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
 </head>
 <body>
-    <h1>שלום! זה האתר שלי.</h1>
-    <p>כאן אפשר לכתוב כל תוכן שתרצה.</p>
+  <h1>The site is limited - request to join</h1>
+  <p>To get access to the site, please fill in the details and we will contact you by email:</p>
+
+  <form action="https://formsubmit.co/your@email.com" method="POST">
+    <input type="text" name="name" placeholder="your name" required>
+    <input type="email" name="email" placeholder="your email" required>
+    <textarea name="reason" placeholder="Why do you want to join?" rows="4" required></textarea>
+    
+    <!-- לא תינתן תשובה אוטומטית -->
+    <input type="hidden" name="_captcha" value="false">
+    <button type="submit">Submit a request</button>
+  </form>
 </body>
 </html>
