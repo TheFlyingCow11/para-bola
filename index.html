@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Joining request</title>
+  <title>Join Request</title>
   <style>
     body {
-      direction: rtl;
       font-family: Arial, sans-serif;
-      background: #f0f0f0;
+      background: #f4f4f4;
       padding: 40px;
       max-width: 600px;
       margin: auto;
@@ -18,41 +17,65 @@
     form {
       background: white;
       padding: 20px;
-      border-radius: 12px;
+      border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     input, textarea, button {
-      display: block;
       width: 100%;
-      margin-bottom: 15px;
       padding: 10px;
+      margin-bottom: 15px;
       border-radius: 6px;
       border: 1px solid #ccc;
       font-size: 16px;
     }
     button {
-      background: #4CAF50;
+      background: #007BFF;
       color: white;
       border: none;
-      cursor: pointer;
     }
     button:hover {
-      background: #45a049;
+      background: #0056b3;
     }
   </style>
 </head>
 <body>
-  <h1>The site is limited - request to join</h1>
-  <p>To get access to the site, please fill in the details and we will contact you by email:</p>
+  <h1>Restricted Access - Request to Join</h1>
+  <p>Please fill in the form below to request access.</p>
 
-  <form action="https://formsubmit.co/your@email.com" method="POST">
-    <input type="text" name="name" placeholder="your name" required>
-    <input type="email" name="email" placeholder="your email" required>
-    <textarea name="reason" placeholder="Why do you want to join?" rows="4" required></textarea>
-    
-    <!-- לא תינתן תשובה אוטומטית -->
-    <input type="hidden" name="_captcha" value="false">
-    <button type="submit">Submit a request</button>
+  <form id="joinForm">
+    <input type="text" name="name" id="name" placeholder="Your name" required>
+    <input type="email" name="email" id="email" placeholder="Your email" required>
+    <textarea name="reason" id="reason" placeholder="Why do you want to join?" rows="4" required></textarea>
+    <button type="submit">Submit</button>
   </form>
+
+  <script>
+    document.getElementById("joinForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // prevent default submit
+      const reason = document.getElementById("reason").value.trim();
+      const validPhrase = "para-bola 17:09, parapibarafus 19:08";
+
+      if (reason === validPhrase) {
+        // redirect to success page
+        window.location.href = "access.html";
+      } else {
+        // submit form to email using Formsubmit
+        const form = event.target;
+        const formData = new FormData(form);
+        fetch("https://formsubmit.co/lyrezror@gmail.com", {
+          method: "POST",
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(response => {
+          alert("Request submitted! You'll receive a response soon.");
+          form.reset();
+        }).catch(error => {
+          alert("Error sending your request. Please try again later.");
+        });
+      }
+    });
+  </script>
 </body>
 </html>
